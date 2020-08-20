@@ -17,6 +17,10 @@ form.addEventListener('submit', e => {
 		message = `Your BMI is ${bmi} (${bmiDegree})`;
 	}
 
+	if (!mass && !height) {
+		return setResult('Fill out all the fields', false);
+	}
+
 	if (!mass) {
 		return setResult('Invalid mass', false);
 	}
