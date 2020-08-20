@@ -1,2 +1,2 @@
 # bmi-calculator
-BMI calculator maded with HTML, CSS and JavaScript.
+Checkout the project [here](https://brunordgs.github.io/bmi-calculator/).
