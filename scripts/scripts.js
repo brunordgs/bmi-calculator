@@ -11,11 +11,12 @@ form.addEventListener('submit', e => {
 	const bmiDegree = getBMIDegree(bmi);
 	let message;
 
-	if (bmi === 0) {
-		message = `Your BMI is ${bmi} (${bmiDegree})`;
-	} else {
+	if (bmi == 0) {
 		message = 'BMI is not valid';
+	} else {
+		message = `Your BMI is ${bmi} (${bmiDegree})`;
 	}
+
 	if (!mass) {
 		return setResult('Invalid mass', false);
 	}
