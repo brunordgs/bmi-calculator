@@ -1,0 +1,66 @@
+:root {
+	font-size: 60%;
+
+	--color-background: #f0f0f7;
+	--color-primary-light: #6c6f93;
+	--color-secondary: #232530;
+	--color-secondary-dark: #1a1c23;
+	--color-line-in-white: #e6e6f0;
+	--color-text-title: #32264d;
+	--color-text-base: #6a6180;
+	--color-text-complement: #9c98a6;
+	--color-input-background: #f8f8fc;
+	--color-button-text: #ffffff;
+	--color-box-base: #ffffff;
+	--color-box-footer: #fafafc;
+	--color-text-info: #c1bccc;
+	--color-message-success: #372d47;
+	--color-message-failure: #b62d43;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100vh;
+}
+
+body {
+	background: var(--color-background);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+body,
+input,
+button {
+	font: 500 1.6rem Poppins;
+	color: var(--color-text-base);
+}
+
+input::placeholder {
+	color: var(--color-text-info);
+	font-weight: 400;
+}
+
+small {
+	color: var(--color-text-complement);
+}
+
+#container {
+	width: 90vw;
+	max-width: 900px;
+}
+
+@media (min-width: 900px) {
+	:root {
+		font-size: 62.5%;
+	}
+}

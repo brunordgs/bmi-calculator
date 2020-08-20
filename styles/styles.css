@@ -1,0 +1,164 @@
+.input-block label {
+	font-size: 1.6rem;
+}
+
+.input-block input {
+	width: 100%;
+	height: 5.6rem;
+	margin-top: 0.8rem;
+
+	font-size: 1.4rem;
+
+	border-radius: 0.8rem;
+	background: var(--color-input-background);
+	border: 1px solid var(--color-line-in-white);
+
+	outline: none;
+	padding: 0 1.6rem;
+}
+
+.input-block {
+	position: relative;
+}
+
+.input-block:focus-within::after {
+	content: '';
+
+	width: calc(100% - 3.2rem);
+	height: 2px;
+	background: var(--color-primary-light);
+
+	position: absolute;
+	left: 1.6rem;
+	bottom: 0px;
+}
+
+#container {
+	width: 100vw;
+	height: 100vh;
+}
+
+main {
+	background: var(--color-box-base);
+	width: 100%;
+	max-width: 110rem;
+	margin: auto;
+	padding: 4rem 0;
+}
+
+fieldset {
+	border: none;
+
+	padding: 0 2.4rem;
+}
+
+fieldset legend {
+	font: 600 2.4rem Poppins;
+	color: var(--color-text-title);
+	margin-bottom: 2.4rem;
+
+	text-align: center;
+
+	width: 100%;
+
+	padding-bottom: 1.2rem;
+	border-bottom: 1px solid var(--color-line-in-white);
+}
+
+fieldset .input-block + .input-block {
+	margin-top: 2.4rem;
+}
+
+main footer {
+	padding: 2rem 2.4rem;
+
+	background: var(--color-box-footer);
+	border-top: 1px solid var(--color-line-in-white);
+	margin-top: 6.4rem;
+}
+
+main footer p {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 1.4rem;
+	line-height: 2.4rem;
+
+	color: var(--color-text-complement);
+}
+
+main footer p img {
+	margin-right: 2rem;
+}
+
+main footer button {
+	width: 100%;
+	height: 5.6rem;
+	background: var(--color-secondary);
+	color: var(--color-button-text);
+	border: none;
+	border-radius: 0.8rem;
+	cursor: pointer;
+	font: 500 1.6rem Poppins;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s;
+	margin-top: 3.2rem;
+}
+
+main footer button:hover {
+	background: var(--color-secondary-dark);
+}
+
+.success,
+.failure {
+	background: var(--color-message-success);
+	color: var(--color-line-in-white);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 40px;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.failure {
+	background: var(--color-message-failure);
+}
+
+@media (min-width: 900px) {
+	#container {
+		width: 100vw;
+		height: auto;
+	}
+
+	main {
+		border-radius: 0.8rem;
+	}
+
+	main fieldset {
+		padding: 0 64px;
+	}
+
+	main footer {
+		padding: 20px 64px 0;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	main footer button {
+		margin-top: 0;
+
+		width: 200px;
+	}
+}
