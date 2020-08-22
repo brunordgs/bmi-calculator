@@ -66,7 +66,7 @@ fieldset legend {
 }
 
 fieldset .input-block + .input-block {
-	margin-top: 2.4rem;
+	margin-top: 5rem;
 }
 
 main footer {
@@ -113,9 +113,25 @@ main footer button:hover {
 	background: var(--color-secondary-dark);
 }
 
-.success,
-.failure {
-	background: var(--color-message-success);
+span.error {
+	background: var(--color-message-error);
+	color: var(--color-line-in-white);
+
+	display: flex;
+	padding: 0;
+
+	position: absolute;
+	width: 100%;
+	transition: 0.2s;
+}
+
+span.error.active {
+	border-radius: 0.4rem;
+	padding: 0.8rem;
+}
+
+#result p {
+	background: var(--color-message-result);
 	color: var(--color-line-in-white);
 
 	display: flex;
@@ -128,10 +144,6 @@ main footer button:hover {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-}
-
-.failure {
-	background: var(--color-message-failure);
 }
 
 @media (min-width: 900px) {

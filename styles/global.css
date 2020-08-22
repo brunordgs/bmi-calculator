@@ -14,8 +14,8 @@
 	--color-box-base: #ffffff;
 	--color-box-footer: #fafafc;
 	--color-text-info: #c1bccc;
-	--color-message-success: #372d47;
-	--color-message-failure: #b62d43;
+	--color-message-result: #372d47;
+	--color-message-error: #b62d43;
 }
 
 * {
