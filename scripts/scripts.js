@@ -24,7 +24,7 @@ function setResult() {
 	const bmiDegree = getBMIDegree(bmi);
 	let message;
 
-	bmi == 0
+	bmi == 0 || isNaN(bmi)
 		? (message = 'BMI is not valid')
 		: (message = `Your BMI is ${bmi} (${bmiDegree})`);
 
