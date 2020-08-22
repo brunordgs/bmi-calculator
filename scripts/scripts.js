@@ -92,7 +92,7 @@ function customValidation(e) {
 // Applying message to required field
 fields.forEach(field => {
 	field.addEventListener('invalid', e => {
-		// Bubble eliminite
+		// Bubble eliminate
 		e.preventDefault();
 		customValidation(e);
 	});
