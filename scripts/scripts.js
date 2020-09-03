@@ -1,107 +1,115 @@
-const fields = document.querySelectorAll('[required]');
+const fields = document.querySelectorAll("[required]");
 
 function getBMI(mass, height) {
-	const bmi = mass / (height * height);
+  const bmi = mass / (height * height);
 
-	return bmi.toFixed(2);
+  return bmi.toFixed(2);
 }
 
 function getBMIDegree(bmi) {
-	const degree = ['Underweight', 'Normal', 'Overweight', 'Obesity'];
+  const degree = ["Underweight", "Normal", "Overweight", "Obesity"];
+  const levels = [bmi < 18.5, bmi <= 24.9, bmi <= 29.9, bmi >= 30];
+  let bmiLevel;
+  levels.map((level, index) =>
+    level && !bmiLevel ? (bmiLevel = degree[index]) : level
+  );
 
-	if (bmi < 18.5) return degree[0];
-	if (bmi <= 24.9) return degree[1];
-	if (bmi <= 29.9) return degree[2];
-	if (bmi >= 30) return degree[3];
+  return bmiLevel;
 }
 
 function setResult() {
-	const result = document.querySelector('#result');
-	const paragraph = document.createElement('p');
-	const mass = Number(document.querySelector('input[name="mass"]').value);
-	const height = Number(document.querySelector('input[name="height"]').value);
-	const bmi = getBMI(mass, height);
-	const bmiDegree = getBMIDegree(bmi);
-	let message;
+  const result = document.querySelector("#result");
+  const paragraph = document.createElement("p");
+  const mass = +document
+    .querySelector('input[name="mass"]')
+    .value.replace(",", ".");
+  const height = +document
+    .querySelector('input[name="height"]')
+    .value.replace(",", ".");
+  const bmi = getBMI(mass, height);
+  const bmiDegree = getBMIDegree(bmi);
+  let message;
 
-	bmi == 0 || isNaN(bmi)
-		? (message = 'BMI is not valid')
-		: (message = `Your BMI is ${bmi} (${bmiDegree})`);
+  message =
+    !+bmi || isNaN(bmi)
+      ? "BMI is not valid"
+      : `Your BMI is ${bmi} (${bmiDegree})`;
 
-	paragraph.innerHTML = message;
-	result.appendChild(paragraph);
+  paragraph.innerHTML = message;
+  result.appendChild(paragraph);
 }
 
 function validateField(field) {
-	function verifyErrors() {
-		let foundError = false;
+  function verifyErrors() {
+    let foundError = false;
 
-		for (const error in field.validity) {
-			if (field.validity[error] && !field.validity.valid) {
-				foundError = error;
-			}
-		}
+    for (const error in field.validity) {
+      if (field.validity[error] && !field.validity.valid) {
+        foundError = error;
+      }
+    }
 
-		return foundError;
-	}
+    return foundError;
+  }
 
-	function messagesType(type) {
-		const messages = {
-			text: {
-				valueMissing: 'Please fill out this field',
-			},
-		};
+  function messagesType(type) {
+    const messages = {
+      text: {
+        valueMissing: "Please fill out this field",
+        patternMismatch: "Please use the correct pattern for this field",
+      },
+    };
 
-		return messages[field.type][type];
-	}
+    return messages[field.type][type];
+  }
 
-	function setCustomMessage(message) {
-		const spanError = field.parentNode.querySelector('span.error');
+  function setCustomMessage(message) {
+    const spanError = field.parentNode.querySelector("span.error");
 
-		if (message) {
-			spanError.classList.add('active');
-			spanError.innerHTML = message;
-		} else {
-			spanError.classList.remove('active');
-			spanError.innerHTML = '';
-		}
-	}
+    if (message) {
+      spanError.classList.add("active");
+      spanError.innerHTML = message;
+    } else {
+      spanError.classList.remove("active");
+      spanError.innerHTML = "";
+    }
+  }
 
-	return function () {
-		const error = verifyErrors();
+  return function () {
+    const error = verifyErrors();
 
-		if (error) {
-			const message = messagesType(error);
+    if (error) {
+      const message = messagesType(error);
 
-			field.style.borderColor = 'red';
-			setCustomMessage(message);
-		} else {
-			field.style.borderColor = '';
-			setCustomMessage();
-		}
-	};
+      field.style.borderColor = "red";
+      setCustomMessage(message);
+    } else {
+      field.style.borderColor = "";
+      setCustomMessage();
+    }
+  };
 }
 
-function customValidation(e) {
-	const field = e.target;
-	const validation = validateField(field);
+function customValidation({ target }) {
+  const field = target;
+  const validation = validateField(field);
 
-	validation();
+  validation();
 }
 
 // Applying message to required field
-fields.forEach(field => {
-	field.addEventListener('invalid', e => {
-		// Bubble eliminate
-		e.preventDefault();
-		customValidation(e);
-	});
-	field.addEventListener('blur', customValidation);
+fields.forEach((field) => {
+  field.addEventListener("invalid", (e) => {
+    // Bubble eliminate
+    e.preventDefault();
+    customValidation(e);
+  });
+  field.addEventListener("blur", customValidation);
 });
 
 // Cancel default page submit
-document.querySelector('form').addEventListener('submit', e => {
-	e.preventDefault();
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
 
-	setResult();
+  setResult();
 });
